@@ -5,7 +5,7 @@
   "author": "emmitorstensson",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nodemon --watch api --exec \"nuxt\"",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^2.0.6",
     "prettier": "^1.16.4"
   }
 }
