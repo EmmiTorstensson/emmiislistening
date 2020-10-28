@@ -2,6 +2,8 @@ import axios from 'axios'
 
 const clientUrl = process.env.CLIENT_URL
 
+// These are the states I want set to props
+
 export const state = () => ({
   isConnected: false,
   message: null,

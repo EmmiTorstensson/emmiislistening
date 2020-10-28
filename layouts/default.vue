@@ -42,14 +42,14 @@
     }
 
     html {
-      background: #000000;
+      background: #f8c9d0;
     }
 
     body {
       padding: 0;
       margin: 0;
-      color: white;
-      font-family: 'Bungee Hairline', monospace;
+      color: #4e8e7b;
+      font-family: 'Montserrat', sans-serif;
     }
 
     a {

@@ -33,6 +33,8 @@ app.all('/spotify/data/:key', async ({ params: { key }, query }, res) => {
   }
 })
 
+
+
 function storageArgs(key, props) {
   const { expires, body, value } = props
   const val = Boolean(body) ? JSON.stringify(body) : value
