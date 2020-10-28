@@ -1,55 +1,91 @@
 <template>
   <div>
-    <nuxt />
+    <nuxt-link
+        to="/auth"
+        name="auth"
+        :aria-current="ariaCurrent"
+      >Login</nuxt-link>
+    <nuxt/>
   </div>
 </template>
 
+<script>
+    export default {
+      titleShort: 'is Listening',
+      authorName: 'Emmi',
+      computed: {
+        ariaCurrent() {
+          return 'auth' === this.$route.name ? 'page' : false
+        }
+      },
+      head() {
+        return {
+          title: `${this.$options.authorName} ${
+            this.$options.titleShort
+          } ·X· A Musical App`,
+          link: [
+            {
+              rel: 'stylesheet',
+              href: 'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
+            }
+          ]
+        }
+      }
+    }
+</script>
+
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+    :root {
+      --colorGray: #333642;
+      --colorBlue: rgba(118, 120, 224, 0.5);
+      --colorBrightBlue: rgb(0, 112, 255);
+    }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+    html {
+      background: #000000;
+    }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+    body {
+      padding: 0;
+      margin: 0;
+      color: white;
+      font-family: 'Bungee Hairline', monospace;
+    }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+    a {
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+    }
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
+    a:after,
+    a:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1em;
+      z-index: -1;
+      mix-blend-mode: color-burn;
+    }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+    a:after {
+      bottom: 2px;
+      background: var(--colorBlue);
+      z-index: -1;
+      transform: rotate(-3deg);
+    }
+
+    a:before {
+      background: rgba(118, 120, 224, 0.4);
+      transform: rotate(2deg);
+    }
+
+    .nuxt-progress {
+      opacity: 0.3;
+      height: 2px;
+      bottom: 0;
+      top: auto;
+    }
 </style>
