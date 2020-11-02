@@ -34,11 +34,12 @@ export default {
 </script>
 
 <style scoped>
-section {
-  min-width: 300px;
-  max-width: 750px;
-  margin: auto;
-  padding: 1em;
-}
+  section {
+    min-width: 300px;
+    max-width: 750px;
+    margin: auto;
+    padding: 1em;
+    text-align: center;
+  }
 </style>
   

@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1>{{name}}</h1>
+        <img v-if="image" :src="image" alt="Album Artwork" class="album-cover">
+        <h2>{{name}}</h2>
     </div>
     
 </template>
@@ -28,8 +29,22 @@ export default {
         Progress() {
             return this.$store.state.trackProgress
         },
-        artistList
+        artistList() {
+            const { artist } = this.nowPlaying
+            return artist ? artist.map(artist = artsit.name).join(', ') : null
+        },
+        name() {
+            return this.nowPlaying.name
+        }
     }
     
 }
 </script>
+
+<style scoped>
+    .album-cover {
+        max-width: 60%;
+        height: auto; 
+    }
+
+</style>

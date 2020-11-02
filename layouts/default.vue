@@ -1,11 +1,18 @@
 <template>
   <div>
-    <nuxt-link
-        to="/auth"
-        name="auth"
-        :aria-current="ariaCurrent"
-      >Login</nuxt-link>
-    <nuxt/>
+    <div id="background-section-1">
+      <nuxt-link
+          to="/auth"
+          name="auth"
+          :aria-current="ariaCurrent"
+        >Login</nuxt-link>
+    </div>
+    <div id="background-section-2">
+
+    </div>
+    <div class="content">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -22,13 +29,7 @@
         return {
           title: `${this.$options.authorName} ${
             this.$options.titleShort
-          } ·X· A Musical App`,
-          link: [
-            {
-              rel: 'stylesheet',
-              href: 'https://fonts.googleapis.com/css?family=Bungee+Hairline|Oswald'
-            }
-          ]
+          } ·X· A Musical App`
         }
       }
     }
@@ -42,13 +43,38 @@
     }
 
     html {
-      background: #f8c9d0;
+      background: #fb3120;
+    }
+
+    #background-section-1 {
+      position: fixed;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 50%;
+      background-color: #b4f3c3;
+      z-index: 1;
+    }
+
+    #background-section-2 {
+      position: relative;
+      z-index: 2;
+      padding: 30px;
+      text-align: center;
+      top: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 3;
+      margin: 0;
+      padding: 0;
     }
 
     body {
       padding: 0;
       margin: 0;
-      color: #4e8e7b;
+      color: #b4f3c3;
       font-family: 'Montserrat', sans-serif;
     }
 
