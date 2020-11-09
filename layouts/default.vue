@@ -1,81 +1,79 @@
 <template>
-  <div>
-    <div id="background-section-1">
-      <nuxt-link
-          to="/auth"
-          name="auth"
-          :aria-current="ariaCurrent"
-        >Login</nuxt-link>
-    </div>
-    <div id="background-section-2">
+  <div class="main-wrapper">
 
-    </div>
-    <div class="content">
+    <Header :isAuth="isAuth"/>
+
+    <div class="nuxt-mount">
       <nuxt/>
+    </div>
+    
+    <div class="nuxt-link">
+      <nuxt-link
+        to="/auth"
+        name="auth"
+        :aria-current="ariaCurrent"
+        >Login</nuxt-link>
     </div>
   </div>
 </template>
 
 <script>
-    export default {
-      titleShort: 'is Listening',
-      authorName: 'Emmi',
-      computed: {
-        ariaCurrent() {
-          return 'auth' === this.$route.name ? 'page' : false
-        }
-      },
-      head() {
-        return {
-          title: `${this.$options.authorName} ${
-            this.$options.titleShort
-          } ·X· A Musical App`
-        }
-      }
+import Header from '~/components/Header.vue';
+
+export default {
+
+  components: { Header },
+  titleShort: 'is Listening',
+  authorName: 'Emmi',
+  computed: {
+    isAuth() {
+      return this.$route.name === 'auth'
+    },
+    ariaCurrent() {
+      return this.isAuth ? 'page' : false
+    },
+    rootClass() {
+      return this.isAuth ? 'auth base' : 'base'
     }
+  },
+  head() {
+    return {
+      title: `${this.$options.authorName} ${
+        this.$options.titleShort
+      } ·X· A Musical App`,
+      link: [
+        {
+          rel: 'stylesheet',
+        }
+      ]
+    }
+  }
+} 
 </script>
 
 <style>
-    :root {
-      --colorGray: #333642;
-      --colorBlue: rgba(118, 120, 224, 0.5);
-      --colorBrightBlue: rgb(0, 112, 255);
-    }
 
     html {
-      background: #fb3120;
-    }
-
-    #background-section-1 {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 50%;
-      background-color: #b4f3c3;
-      z-index: 1;
-    }
-
-    #background-section-2 {
-      position: relative;
-      z-index: 2;
-      padding: 30px;
-      text-align: center;
-      top: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 3;
-      margin: 0;
-      padding: 0;
+      background: linear-gradient(to bottom, #b4f3c3 50%, #ff0000 50%);
+      min-height: 100%;
+      font-size: 100%;
     }
 
     body {
       padding: 0;
       margin: 0;
-      color: #b4f3c3;
+      color: white;
       font-family: 'Montserrat', sans-serif;
+    }
+
+    .main-wrapper{
+      min-height: 100vh;
+    }
+
+    .nuxt-link {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     a {
@@ -85,33 +83,5 @@
       position: relative;
     }
 
-    a:after,
-    a:before {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 1em;
-      z-index: -1;
-      mix-blend-mode: color-burn;
-    }
 
-    a:after {
-      bottom: 2px;
-      background: var(--colorBlue);
-      z-index: -1;
-      transform: rotate(-3deg);
-    }
-
-    a:before {
-      background: rgba(118, 120, 224, 0.4);
-      transform: rotate(2deg);
-    }
-
-    .nuxt-progress {
-      opacity: 0.3;
-      height: 2px;
-      bottom: 0;
-      top: auto;
-    }
 </style>

@@ -1,20 +1,29 @@
 <template>
-    <div>
-        <img v-if="image" :src="image" alt="Album Artwork" class="album-cover">
-        <h2>{{name}}</h2>
+    <div class="inner-container">
+
+        <img    v-if="image" 
+                :src="image" 
+                alt="Album Artwork" 
+                class="album-cover"
+        >
+
+        <h2 class="track-name">{{name}}</h2>
+        <p class="artist-name">{{artistsList}}</p>
+        <a v-if="href" :href="href">Listen?</a>
     </div>
     
 </template>
 
 <script>
-import Progress from './Progress.vue'
-
 export default {
-    components: { Progress },
     props: ['isPlaying', 'nowPlaying'],
+
     data() {
-        return { staleTimer: '', trackTimer: '' }
+        return {
+            hovered: false
+        }
     },
+  
     computed: {
         image() {
             const { album, image } = this.nowPlaying
@@ -26,25 +35,46 @@ export default {
                 ? iamge
                 : 'https://developer.spotify.com/assets/branding-guidelines/icon2@2x.png'
         },
-        Progress() {
-            return this.$store.state.trackProgress
-        },
-        artistList() {
-            const { artist } = this.nowPlaying
-            return artist ? artist.map(artist = artsit.name).join(', ') : null
+        artistsList() {
+            const { artists } = this.nowPlaying
+            return artists ? artists.map(artist => artist.name).join(', ') : null
         },
         name() {
             return this.nowPlaying.name
-        }
+        },
+        href() {
+            const { external_urls } = this.nowPlaying
+            return external_urls ? external_urls.spotify : null
+        },
+
     }
     
 }
 </script>
 
 <style scoped>
-    .album-cover {
-        max-width: 60%;
-        height: auto; 
+    .inner-container {
+        height: 100%;
+        color: #b4f3c3;
     }
 
+    .album-cover {
+        max-width: 60%;
+        height: auto;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15), 
+                    0 2px 2px rgba(0,0,0,0.15), 
+                    0 4px 4px rgba(0,0,0,0.15), 
+                    0 8px 8px rgba(0,0,0,0.15);
+    }
+
+    .track-name {
+        line-height: 1.2;
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+    .artist-name {
+        font-size: 1rem;
+        margin: 0;
+    }
 </style>
